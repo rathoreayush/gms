@@ -1,0 +1,10 @@
+{
+  "extends": "@tsconfig/react-native/tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "./App", // Update the baseUrl to "App"
+    "paths": {
+      "*": ["*"] // Remove the "src/" prefix
+      
+    }
+  }
+}
