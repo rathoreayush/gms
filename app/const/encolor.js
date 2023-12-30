@@ -12,6 +12,7 @@ const colors = {
     searchBgColor:'#F2F3FA',
     searchbarBorderColor:'#A6AFF0',
     searchPlaceholderText:'black',
-    moalsheetInputplaceholderText:'#5969E3'
+    moalsheetInputplaceholderText:'#5969E3',
+    hearingCardBackground:"#5969E3",
   };
   export default colors;

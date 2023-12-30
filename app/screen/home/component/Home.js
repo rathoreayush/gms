@@ -1,16 +1,26 @@
 import SearchBar from 'component/searchbar/SearchBar';
-import React,{useState} from 'react';
-import { Text, View, SafeAreaView, TouchableOpacity } from 'react-native';
+import React,{useState,useEffect} from 'react';
+import { Text, View, SafeAreaView, TouchableOpacity,FlatList, } from 'react-native';
 import Calender from 'app/untils/images/mics/calendar.svg'
 import styles from './Style';
 import LottieView from 'lottie-react-native';
 import HomeButton from 'component/homebutton/Button';
 import ModalSheet from 'component/modal/ModalSheet';
+import caseData from 'untils/data/Casedata';
+import SelectionItem from 'component/selectionItem/SelectionItem';
 
 const HomeView = () => {
 
   const [isModalVisible, setModalVisible] = useState(false);
+  const [isHearingData,setHearingData]=useState([]);
 
+  
+  useEffect(()=>{
+    setHearingData(caseData);
+    //setHearingData();
+  },[])
+
+console.log("data",isHearingData)
   const closeModal = () => {
     setModalVisible(false);
   };
@@ -28,26 +38,44 @@ const HomeView = () => {
           <Calender width={50} height={40}/>
         </TouchableOpacity>
       </View>
-
-      <View style={styles.lottieView}>
-        <LottieView style={styles.lottie} source={require('app/untils/animination/hearing.json')} autoPlay loop />
-      </View>
-      <View style={styles.textView}>
-        <Text style={styles.text}>Your request to add cases has</Text>
-        <Text style={styles.subText}>been recieved</Text>
-      </View>
-      <View style={styles.bottomTextView}>
-        <Text style={styles.bottomText}>Your Account Manager Sonu - </Text>
-        <Text style={styles.bottomSubText}>6203147160 will call you shortly to set up your account</Text>
-      </View>
-      <View>
-        <HomeButton title='Add Case..' onPress={() => {setModalVisible(true)}} />
-      </View>
-      <ModalSheet
-       isVisible={isModalVisible}
-        onBackButtonPress={()=>{setModalVisible(false)}}
-        onModalClose={closeModal}
-         />
+      {
+        isHearingData?(
+        <>
+          <FlatList style={{marginTop:10}}
+           data={isHearingData} renderItem={({item,index})=>{
+            return(
+              <View >
+               <SelectionItem item={item} onSelect={()=>{}} onLongPress={()=>{}}/>
+              </View>
+            )
+           }}
+          />
+        </>
+         )  :(
+          <>
+          <View style={styles.lottieView}>
+          <LottieView style={styles.lottie} source={require('app/untils/animination/hearing.json')} autoPlay loop />
+        </View>
+        <View style={styles.textView}>
+          <Text style={styles.text}>Your request to add cases has</Text>
+          <Text style={styles.subText}>been recieved</Text>
+        </View>
+        <View style={styles.bottomTextView}>
+          <Text style={styles.bottomText}>Your Account Manager Sonu - </Text>
+          <Text style={styles.bottomSubText}>6203147160 will call you shortly to set up your account</Text>
+        </View>
+        <View>
+          <HomeButton title='Add Case..' onPress={() => {setModalVisible(true)}} />
+        </View>
+        <ModalSheet
+         isVisible={isModalVisible}
+          onBackButtonPress={()=>{setModalVisible(false)}}
+          onModalClose={closeModal}
+           />
+           </>
+         )
+      }
+    
     </SafeAreaView>
   )
 }
