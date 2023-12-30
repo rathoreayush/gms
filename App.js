@@ -12,8 +12,8 @@ function App() {
   StatusBar.setBackgroundColor('#5969E3');
   return (
     <NavigationContainer>
-        <AuthStack/>
-      {/* <AppNavigator/> */}
+        {/* <AuthStack/> */}
+      <AppNavigator/>
     </NavigationContainer>
    
   )
