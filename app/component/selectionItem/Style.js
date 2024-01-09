@@ -6,7 +6,7 @@ import colors from 'const/encolor';
 
 const { height, width } = Dimensions.get('window')
 
-const cardHeight = (height * 20) / 100;
+const cardHeight = (height * 21) / 100;
 const cardWidth = (width * 95) / 100;
 
 
