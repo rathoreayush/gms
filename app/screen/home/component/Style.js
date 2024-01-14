@@ -28,39 +28,62 @@ const styles = StyleSheet.create({
         height: lottieHeight,
         width: lottieWidth,
     },
-    textView:{
-        textAlign:'center',
-        paddingLeft:30,
-        paddingRight:30,
+    textView: {
+        textAlign: 'center',
+        paddingLeft: 30,
+        paddingRight: 30,
     },
-    text:{
-        color:colors.primaryColor,
-        fontSize:20,
-        fontWeight:'bold',
-        alignItems:'center'
+    text: {
+        color: colors.primaryColor,
+        fontSize: 20,
+        fontWeight: 'bold',
+        alignItems: 'center'
     },
-    subText:{
-        color:colors.primaryColor,
-        fontSize:20,
-        fontWeight:'700',
-        alignSelf:'center'
+    subText: {
+        color: colors.primaryColor,
+        fontSize: 20,
+        fontWeight: '700',
+        alignSelf: 'center'
     },
-    bottomTextView:{
-     paddingRight:20,
-     paddingLeft:20,
-     marginTop:10,
+    bottomTextView: {
+        paddingRight: 20,
+        paddingLeft: 20,
+        marginTop: 10,
     },
-    bottomText:{
-        color:colors.blackColor,
-        fontSize:15,
-        textAlign:'center'
-    
+    bottomText: {
+        color: colors.blackColor,
+        fontSize: 15,
+        textAlign: 'center'
+
     },
-    bottomSubText:{
-        color:colors.blackColor,
-        fontSize:15,
-        textAlign:'center'
-   
+    bottomSubText: {
+        color: colors.blackColor,
+        fontSize: 15,
+        textAlign: 'center'
+
+    },
+    selectAllContainer: {
+        flexDirection: 'row',
+        marginTop: 20,
+        marginBottom: 20
+    },
+    imageContainer:{
+        marginLeft:10
+    },
+    selectAllImage:{
+        width: 30,
+        height: 30,
+        tintColor: colors.primaryColor
+    },
+    selectAllText:{
+        padding:7,
+        borderRadius:7,
+        borderWidth:1,
+        marginLeft:20, 
+        color:colors.whiteColor,
+        backgroundColor:colors.primaryColor,
+        fontWeight:"bold",
+        borderColor:colors.inputBorderColor
     }
 
 })

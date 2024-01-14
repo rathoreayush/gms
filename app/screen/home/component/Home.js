@@ -1,6 +1,6 @@
 import SearchBar from 'component/searchbar/SearchBar';
 import React, { useState, useEffect } from 'react';
-import { Text, View, SafeAreaView, TouchableOpacity, FlatList, } from 'react-native';
+import { Text, View, SafeAreaView, TouchableOpacity, FlatList, Image, } from 'react-native';
 import Calender from 'app/untils/images/mics/calendar.svg'
 import styles from './Style';
 import LottieView from 'lottie-react-native';
@@ -86,6 +86,24 @@ const HomeView = () => {
           <Calender width={50} height={40} />
         </TouchableOpacity>
       </View>
+      {
+        showCheckbox?
+        <View style={styles.selectAllContainer}>
+          <TouchableOpacity style={styles.imageContainer} onPress={()=>{
+            setShowCheckbox(false) 
+            clearAll()
+            }}>
+            <Image 
+            source={require('app/untils/images/logo/cancel.png')}
+            style={styles.selectAllImage}
+            />
+          </TouchableOpacity>
+        
+            <Text style={styles.selectAllText} onPress={()=>selectAll()}>Select All</Text>
+       
+        </View>
+        :null
+      }
       {
         isHearingData ? (
           <>
