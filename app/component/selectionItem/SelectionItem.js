@@ -8,9 +8,12 @@ const SelectionItem = ({ item, onLongPress, onSelect, isCheckbox }) => {
             onLongPress()
         }}>
             <View style={{ flexDirection: "row", justifyContent: 'space-between', marginTop: 10, paddingLeft: 7, paddingRight: 7 }}>
-                <CheckBox onTintColor='white'onFillColor="white" onCheckColor="white" tintColor="white" onValueChange={newValue=>{
-                    onSelect(newValue);
-                }} value={item.isSelected}/>
+                {
+                    isCheckbox ? <CheckBox onTintColor='white'onFillColor="white" onCheckColor="white" tintColor="white" onValueChange={newValue=>{
+                        onSelect(newValue);
+                    }} value={item.isSelected}/> :null
+                }
+               
                 <Text style={{ color: '#fff', fontWeight: 'bold' }}>{item.date}</Text>
                 <Text style={{ color: '#fff', fontWeight: 'bold' }}>{item.day}</Text>
             </View>

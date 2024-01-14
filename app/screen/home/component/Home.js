@@ -13,7 +13,7 @@ const HomeView = () => {
 
   const [isModalVisible, setModalVisible] = useState(false);
   const [isHearingData, setHearingData] = useState([]);
-  const [showCheckbox, setShowCheckbox] = useState(false);
+  const [showCheckbox, setShowCheckbox] = useState(true);
 
   useEffect(() => {
     setHearingData(caseData);
@@ -96,17 +96,17 @@ const HomeView = () => {
                     <SelectionItem item={item} onSelect={() => { onSelect(index) }} onLongPress={() => {
                       console.log("log press");
                       if (showCheckbox) {
-                        setShowCheckbox(true);
+                        setShowCheckbox(false);
                         clearAll()
                       }
                       else {
-                        setShowCheckbox(false);
+                       setShowCheckbox(true);
                       }
 
                     }}
 
 
-                      isCheckBox={showCheckbox} />
+                    isCheckbox={showCheckbox} />
                   </View>
                 )
               }}
