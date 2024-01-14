@@ -9,7 +9,7 @@ const SelectionItem = ({ item, onLongPress, onSelect, isCheckbox }) => {
         }}>
             <View style={{ flexDirection: "row", justifyContent: 'space-between', marginTop: 10, paddingLeft: 7, paddingRight: 7 }}>
                 {
-                    isCheckbox ? <CheckBox onTintColor='white'onFillColor="white" onCheckColor="white" tintColor="white" onValueChange={newValue=>{
+                    isCheckbox ? <CheckBox tintColors={{true:'white',false:'black'}} onValueChange={newValue=>{
                         onSelect(newValue);
                     }} value={item.isSelected}/> :null
                 }
