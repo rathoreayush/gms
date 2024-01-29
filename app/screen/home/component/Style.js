@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     selectAllContainer: {
         flexDirection: 'row',
         marginTop: 20,
-        marginBottom: 20
+        marginBottom: 10
     },
     imageContainer:{
         marginLeft:10

@@ -14,17 +14,34 @@ const HomeView = () => {
   const [isModalVisible, setModalVisible] = useState(false);
   const [isHearingData, setHearingData] = useState([]);
   const [showCheckbox, setShowCheckbox] = useState(true);
+  const [filteredData, setFilteredData] = useState([]);
 
   useEffect(() => {
-    setHearingData(caseData);
-    //setHearingData();
-    caseData.map(item => {
-      item.isSelected = false
-    })
+    if (caseData.length === 0) {
+      isDataNotAvailble();
+    } else {
+      const updateData = caseData.map(item => ({ ...item, isSelected: false }));
+      setHearingData(updateData);
+    }
   }, [])
 
-  //onSelect function
+  //check data is not avaiable
+  const isDataNotAvailble = () => {
+    setHearingData();
+    setShowCheckbox(false);
+  }
+  //onSeaerch
+  const onSearch = (text) => {
+    if (typeof text === 'string') {
+      // Filter the data based on the search term
+      const filtered = caseData.filter(item =>
+        item.title.toLowerCase().includes(text.toLowerCase())
+      );
+      setFilteredData(filtered);
+    }
+  };
 
+  //onSelect function
   const onSelect = (ind) => {
     let temp = isHearingData;
     temp.map((item, index) => {
@@ -68,6 +85,13 @@ const HomeView = () => {
     });
     setHearingData(tempData);
   }
+  // Delete function
+  const onDelete = () => {
+    const updatedData = isHearingData.filter(item => !item.isSelected);
+    setHearingData(updatedData);
+    setShowCheckbox(true); // Reset showCheckbox state
+  };
+
 
   const closeModal = () => {
     setModalVisible(false);
@@ -78,8 +102,7 @@ const HomeView = () => {
         <View style={styles.searchView}>
           <SearchBar
             placeholder="Party, Court Name, Judges"
-          // onChangeText={handleTextChange}
-          // value={value}
+            onSearch={onSearch}
           />
         </View>
         <TouchableOpacity>
@@ -87,25 +110,27 @@ const HomeView = () => {
         </TouchableOpacity>
       </View>
       {
-        showCheckbox?
-        <View style={styles.selectAllContainer}>
-          <TouchableOpacity style={styles.imageContainer} onPress={()=>{
-            setShowCheckbox(false) 
-            clearAll()
+        showCheckbox ?
+          <View style={styles.selectAllContainer}>
+            <TouchableOpacity style={styles.imageContainer} onPress={() => {
+              setShowCheckbox(false)
+              clearAll()
             }}>
-            <Image 
-            source={require('app/untils/images/logo/cancel.png')}
-            style={styles.selectAllImage}
-            />
-          </TouchableOpacity>
-        
-            <Text style={styles.selectAllText} onPress={()=>selectAll()}>Select All</Text>
-       
-        </View>
-        :null
+              <Image
+                source={require('app/untils/images/logo/cancel.png')}
+                style={styles.selectAllImage}
+              />
+            </TouchableOpacity>
+
+            <Text style={styles.selectAllText} onPress={() => selectAll()}>Select All</Text>
+            <Text style={styles.selectAllText} onPress={() => onDelete()}>Delete</Text>
+
+          </View>
+          : null
       }
       {
         isHearingData ? (
+
           <>
             <FlatList style={{ marginTop: 10 }}
               data={isHearingData} renderItem={({ item, index }) => {
@@ -118,13 +143,13 @@ const HomeView = () => {
                         clearAll()
                       }
                       else {
-                       setShowCheckbox(true);
+                        setShowCheckbox(true);
                       }
 
                     }}
 
 
-                    isCheckbox={showCheckbox} />
+                      isCheckbox={showCheckbox} />
                   </View>
                 )
               }}

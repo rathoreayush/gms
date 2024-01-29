@@ -4,8 +4,9 @@ import styles from './Style';
 import colors from 'const/encolor';
 
 
-const SearchBar = ({ ...props }) => {
+const SearchBar = ({ onSearch,...props }) => {
   const [isFocused, setIsFocused] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
 
 
   const handleFocus = () => {
@@ -15,6 +16,11 @@ const SearchBar = ({ ...props }) => {
   const handleBlur = () => {
     setIsFocused(false);
   };
+
+  const handleChangeText=(text)=>{
+    setSearchTerm(text);
+    onSearch(text);
+  };
   return (
     <View>
       <View style={styles.searchView}>
@@ -23,6 +29,8 @@ const SearchBar = ({ ...props }) => {
           onFocus={handleFocus}
           onBlur={handleBlur}
           placeholderTextColor={colors.searchPlaceholderText}
+          value={searchTerm}
+          onChange={handleChangeText}
         />
         <TouchableOpacity>
           <Image
